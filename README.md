@@ -10,6 +10,6 @@ Will NOT be maintained much after publish. If anything breaks, feel free to fix 
 INSTALL:
 Make sure you have vencord installed first (duh). Download the .css, paste into the Vencord theme folder and toggle it on.
 
-(I don't like doing the @import raw that other themes do mainly because it limits user customization)
+Feel free to figure out the ```@import raw``` for both the font and the theme yourself.  
 
 - C
