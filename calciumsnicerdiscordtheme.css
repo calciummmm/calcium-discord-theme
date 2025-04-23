@@ -1,0 +1,522 @@
+/**
+ * @name calciumm.'s nicer looking discord
+ * @author @calciumm.
+ * @version 1.0.0
+ * @description Polishes, changes and adds a few UI elements to make discord look just a little nicer to use.
+*/
+
+/* ACTIVITY STATUS KILLER */
+[class*='membersGroup']:has([role=button]),
+[class*='member'] [class*='container']:has([class*='badges']) {
+  display: none;
+}
+/* KILL ALL ROUNDED EDGES (ALL OF THEM!!!)*/
+*,
+*::before,
+*::after {
+    border-radius: 0 !important;
+}
+
+.svg_cc5dd2 > mask,
+.svg__44b0c > rect,
+.svg__44b0c > circle,
+.svg__44b0c rect[mask='url(#:rhi:)'],
+.avatar__20a53 .status_a423bd {
+    display: none;
+}
+
+.mask__68edb > foreignObject,
+.svg__44b0c > foreignObject,
+.svg__2338f > foreignObject {
+    mask: none;
+}
+
+.wrapper__44b0c:has(rect)::after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    bottom: -4px;
+    right: -4px;
+    border: 2px solid var(--background-base-lower);
+}
+#app-mount .wrapper__44b0c:has(rect[fill='#40a258'])::after {
+    background: #40a258 !important;
+}
+#app-mount .wrapper__44b0c:has(rect[fill='#d83a41'])::after {
+    background: #d83a41 !important;
+}
+#app-mount .wrapper__44b0c:has(rect[fill='#cc954c'])::after {
+    background: #cc954c !important;
+}
+#app-mount .wrapper__44b0c:has(rect[fill='#82838b'])::after {
+    background: #82838b !important;
+}
+#app-mount .wrapper__44b0c:has(rect[fill='#9147ff'])::after {
+    background: #9147ff !important;
+}
+
+.lowerBadge_cc5dd2 {
+    border: 2px solid var(--background-base-lower);
+    bottom: -4px;
+    right: -4px;
+}
+.upperBadge_cc5dd2 {
+    border: 2px solid var(--background-base-lower);
+    top: -4px;
+    right: -4px;
+}
+/* FIX THAT STUPID USERNAME BOX */
+.visual-refresh [class^="panels_"] {
+    border-radius: 0;
+    left: var(--custom-guild-list-width);
+    bottom: 0;
+    width: calc(var(--custom-guild-sidebar-width) - var(--custom-guild-list-width) + 1px);
+}
+/* MOVED COLLAPSE CHANNEL ICON (OCD my beloved)*/
+.containerDefault__29444 {
+  > div {
+    padding-left: 0.5em;
+
+    > div {
+      display: flex !important;
+      place-content: start !important;
+      flex-direction: row-reverse !important;
+    }
+  }
+}
+/* KILL STATUS REACTIONS */
+.avatarPopover__2d0a, .statusPopover__2d0ab, .activityPopover__2d0ab{display:none;}
+/* REMOVE THAT FATASS TOP BAR WITH THE SERVER NAME */
+.visual-refresh {
+  --vr-header-snippet-top: 0px;
+  --vr-header-snippet-server-padding: 16px;
+  --vr-header-snippet-space: 230px;
+  --vr-header-snippet-button-padding: 0;
+
+  div.chat_f75fb0:not(.threadSidebarOpen_f75fb0) div.subtitleContainer_f75fb0,
+  main.container__133bf,
+  div.chatLayerWrapper__01ae2 {
+    & section.container__9293f {
+      padding-right: var(--vr-header-snippet-space);
+    }
+  }
+
+  div.headerBar__8a7fc.overlay__8a7fc {
+    padding-right: var(--vr-header-snippet-space);
+
+    & .tab__65d41,
+    & .searchBar__1ac1c {
+      -webkit-app-region: no-drag;
+    }
+  }
+
+  div.videoControls_bfe55a div.subtitleContainer__49508 {
+    padding-right: calc(var(--vr-header-snippet-space) - 20px);
+
+    & .toolbar__9293f {
+      -webkit-app-region: no-drag;
+    }
+  }
+
+  div.page_c48ade {
+    &:not(:has(> div.chat_f75fb0)) {
+      anchor-name: --vr-header-snippet;
+    }
+
+    & > div.chat_f75fb0 {
+      anchor-name: --vr-header-snippet;
+    }
+  }
+
+  div.base_c48ade {
+    grid-template-rows: [top] 0 [titleBarEnd] min-content [noticeEnd] 1fr [contentEnd] min-content [end];
+
+    &:has(div.bar_c38106 > div.trailing_c38106 .updateIconForeground__49676) {
+      & div.chat_f75fb0,
+      & div.subtitleContainer_f75fb0,
+      & main.container__133bf,
+      & div.chatLayerWrapper__01ae2 {
+        & section.container__9293f {
+          padding-right: calc(var(--vr-header-snippet-space) + 50px);
+        }
+      }
+
+      & div.videoControls_bfe55a .topControls_bfe55a div.toolbar__9293f {
+        margin-right: calc(var(--vr-header-snippet-space) + 30px) !important;
+      }
+    }
+
+    & > div.content_c48ade {
+      z-index: 0;
+    }
+
+    & > div.bar_c38106 {
+      position: absolute;
+      position-anchor: --vr-header-snippet;
+      top: var(--vr-header-snippet-top);
+      right: anchor(right);
+      width: anchor-size(width);
+      padding: 0 var(--vr-header-snippet-button-padding) 0 0;
+
+      & > .title_c38106 {
+        display: none;
+      }
+    }
+
+    &:has(> .notice__6e2b9) {
+      & > div.bar_c38106 {
+        top: anchor(top);
+      }
+    }
+
+    & div.trailing_c38106 {
+      background: none;
+      border: none;
+      height: var(--custom-channel-header-height);
+    }
+
+    &:has(.threadSidebarOpen_f75fb0.threadSidebarFloating_f75fb0)
+      > .bar_c38106 {
+      z-index: 0;
+    }
+  }
+
+  :not(:has(div.page_c48ade > div.chat_f75fb0))
+    div.base_c48ade
+    > div.bar_c38106 {
+    right: 0 !important;
+  }
+
+  ul[data-list-id="guildsnav"] > div.itemsContainer_ef3116 > div.stack_dbd263 {
+    margin-top: var(--vr-header-snippet-server-padding);
+  }
+
+  section.header__0b563 div.toolbar__9293f,
+  :not(.videoControls_bfe55a) div.topic__6ec1a {
+    -webkit-app-region: no-drag;
+  }
+
+  .div.videoControls_bfe55a .topControls_bfe55a {
+    z-index: -1;
+  }
+}
+/* TIMESTAMP FIXER */
+span[class*="timestampInline_"] time::before {
+  content: attr(aria-label);
+  font-size: 12px;
+}
+
+span[class*="timestampInline_"] {
+  font-size: 0px !important;
+}
+/* PRETTY FOLDERS */
+.visual-refresh .closedFolderIconWrapper__48112>div {
+  border-radius: 50% !important;
+  width: 16px;
+  height: 16px;
+  font-size: 6px !important;
+  line-height: 16px;
+}
+/* SLIGHTLY BETTER SPACING BETWEEN MEMBERS AND STUFF */
+.visual-refresh .scrollerInner__36d07 {
+    padding-bottom: 5px;
+}
+
+.visual-refresh .membersWrap_c8ffbb .membersGroup_c8ffbb {
+    padding-bottom: 25px;
+}
+
+.visual-refresh .button__74017,.buttonContents_e6e74f:not([class*="enabled__67645"]) {
+    transform: scale(1.25) !important;
+}
+
+.visual-refresh .spriteContainer__04eed {
+   transform: scale(1.1) !important;
+}
+/* COOL ASS TYPING INDICATOR */
+:root {
+  /* Custom padding for the chat box */
+  --rscb-chat-box-padding: 8px;
+  /* Whether you want the chat to not move up and down when someone starts typing */
+  --rscb-no-jump-chat: 0;
+}
+
+.visual-refresh .form_f75fb0 {
+  display: flex;
+  flex-direction: column;
+  padding: 4px var(--rscb-chat-box-padding) var(--rscb-chat-box-padding)
+    var(--rscb-chat-box-padding) !important;
+  /* Normal chatbar */
+  .channelTextArea_f75fb0 {
+    margin-bottom: 0px;
+    margin-right: 1px;
+    /* reply bar */
+    .stackedBars__74017 {
+      border-bottom-color: transparent !important;
+      background-color: var(--chat-background-default);
+    }
+  }
+  /* slowmode bar + typing indicator */
+  .base_b88801 {
+    border-color: transparent !important;
+    position: static;
+    order: -1;
+    background: transparent !important;
+    background-image: transparent !important;
+    border: 1px solid var(--border-faint);
+    border-bottom: none;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    .typing_b88801 {
+      border-color: transparent !important;
+    }
+    .typingDots_b88801,
+    .cooldownText_b21699 {
+      background-color: var(--chat-background-default);
+      height: 24px;
+      padding-right: 8px;
+      padding-left: 8px;
+      border-radius: 8px 8px 0 0;
+      border: 1px solid var(--border-faint) !important;
+      border-bottom-color: transparent !important;
+      /* because they dont have the same position */
+      &.typingDots_b88801 {
+        transform: translateX(-1px);
+        &:not(:has(span > strong)) {
+          display: none !important;
+        }
+      }
+      &.cooldownText_b21699 {
+        transform: translateY(1px);
+      }
+    }
+  }
+  .channelAttachmentArea_b77158 {
+    background-color: var(--chat-background-default);
+  }
+  /* the stars of the show, the :has */
+  /* check for typing thing */
+  &:has(> .typing_b88801 > .typingDots_b88801 > span > strong)
+    .channelTextArea_f75fb0 {
+    border-top-left-radius: 0 !important;
+  }
+  /* check for cooldown thing */
+  &:has(> .typing_b88801 > .cooldownWrapper_b21699) .channelTextArea_f75fb0 {
+    border-top-right-radius: 0 !important;
+  }
+}
+
+.messagesWrapper__36d07:not(
+    :has(+ .formWithLoadedChatInput_f75fb0 > .typing_b88801)
+  )
+  .scrollerContent__36d07 {
+  padding-bottom: calc(var(--rscb-no-jump-chat) * 25px);
+}
+/* CODE BLOCKS BE GONE! */
+:root {
+  --codeblock-height: 200px;
+}
+.codeContainer__75297 > code {
+  max-height: var(--codeblock-height);
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+  }
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+    &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb {
+    /* visibility: hidden; */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    background-color: var(--scrollbar-thin-thumb);
+    border: 2px solid transparent;
+    border-radius: 4px;
+    min-height: 40px;
+  }
+  &:hover::-webkit-scrollbar-track, &:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-thin-track);
+    border: 2px solid var(--scrollbar-thin-track);
+    border-color: var(--scrollbar-thin-track);
+  }
+}
+
+/* PRETTY BLUR? */
+:root {
+  --blrbg-blur-by: 2px;
+  --blrbg-dimmness: 25;
+}
+
+.backdrop__78332 {
+  background: rgba(0, 0, 0, calc(var(--blrbg-dimmness) / 100)) !important;
+  backdrop-filter: blur(var(--blrbg-blur-by)) !important;
+}
+
+/* fix for the image viewer thing */
+.carouselModal_d3a6f0 > div {
+  > .author__6088c {
+    background-color: transparent;
+    backdrop-filter: blur(calc(var(--blrbg-blur-by) * 5));
+    padding: 5px 10px 5px 60px;
+    margin: -5px 0 -5px -60px;
+    border-radius: 8px;
+    width: fit-content;
+    .timestamp__6088c {
+      color: color-mix(in xyz, white 50%, var(--text-muted) 50%);
+    }
+  }
+  > .authorAvatar__6088c {
+    z-index: 5;
+  }
+}
+/* SETTINGS POP-OUT MENU (NOW WITH 20% MORE BLUR!!!!) */
+.standardSidebarView__23e6b {
+    position: absolute;
+    width: 60vw;
+    max-width: 60vw !important;
+    height: 75vh;
+    z-index: 1000;
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    border-radius: 16px;
+    overflow: hidden;
+    
+    .contentRegion__23e6b {
+        width: calc(60vw - 270px);
+        display: block;
+        flex: none;
+
+        .toolsContainer__23e6b {
+            margin: 0;
+            position: absolute;
+            right: 0px;
+            top: 0;
+            flex: none;
+            background-color: var(--background-primary);
+            padding: 0px;
+            height: 46px;
+            width: 100%;
+            box-shadow: var(--elevation-low);
+           
+
+            .tools__23e6b {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                z-index: 5000;
+
+                .container_c2b141 {
+                    .keybind_c2b141 {
+                        display: none;
+                    }
+
+                    .closeButton_c2b141 {
+                        border-radius: 50%;
+                        background-color:rgba(255, 255, 255, 0.1);
+                        color: white;
+                        height: 25px !important;
+                        width: 25px !important;
+                        border: none;
+                        flex: none;
+
+                        >svg {
+                            margin: 9px 0px 0px 9px;
+                            width: 18px !important;
+                            height: 18px !important;
+                            overflow: visible;
+
+                            >path {
+                                margin-left: 20px;
+                                d: path("M0.00380648 0.00268555H1.50315H1.55C1.93069 0.0202563 2.31724 0.19596 2.5808 0.47123L6.00117 3.8916L9.4684 0.47123C9.86666 0.125678 10.1361 0.0143984 10.4992 0.00268555H11.9985V1.50203C11.9985 1.92957 11.9458 2.32784 11.6237 2.62653L8.20333 6.0469L11.5768 9.42042C11.858 9.70155 11.9985 10.0998 11.9985 10.4981V11.9974H10.4992C10.1009 11.9974 9.70267 11.8569 9.42154 11.5757L6.00117 8.15535L2.5808 11.5757C2.29967 11.8569 1.90141 11.9974 1.50315 11.9974H0.00380648V10.4981C0.00380648 10.0998 0.14437 9.70155 0.425496 9.42042L3.84587 6.0469L0.425496 2.62653C0.109228 2.33369 -0.0313351 1.92372 0.00380648 1.50203V0.00268555Z");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .contentColumn__23e6b {
+            >.settingsPage_f131e9 {
+                >h3 {
+                    font-size: 0px;
+                    z-index: 5000;
+                    align-content: center;
+                    text-align: center;
+                    position: fixed;
+                }
+            }
+
+            >div>h2[data-text-variant="heading-lg/semibold"],
+            >div>.sectionTitle__7bffb>h2,
+            >h2[data-text-variant="heading-lg/semibold"] {
+                font-size: 0px;
+                z-index: 100;
+                height: 0px;
+                align-content: center;
+                text-align: center;
+                position: fixed;
+                pointer-events: none;
+            }
+
+            .tabBar_d6f9e9 {
+                margin-top: 0;
+            }
+
+            
+
+            .headerContainer__6a750 {
+                justify-content: center;
+            }
+        }
+    }
+
+    .sidebarRegion__23e6b {
+        flex: none;
+
+        .sidebar__23e6b {
+            width: 270px;
+            padding: 0;
+            overflow: visible !important;
+
+            &::before {
+                content: "Settings";
+                font-size: 16px;
+                font-weight: 600;
+                z-index: 100;
+                height: 46px;
+                align-content: center;
+                text-align: center;
+                width: 278px;
+                position: fixed;
+                pointer-events: none;
+                background-color: var(--background-secondary);
+                box-shadow: var(--elevation-low);
+                color: white;
+                border-radius: 16px 0px 0px 0px;
+            }
+
+            .side_b3f026 {
+                overflow: visible !important;
+                padding: 60px 8px 6px 16px;
+            }
+        }
+    }
+    
+}
+
+.layer__960e4 {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(0.1rem);
+}
+
+.baseLayer__960e4 {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
